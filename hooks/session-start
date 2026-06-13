@@ -6,9 +6,10 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PLUGIN_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
 # Resolve home for the bd Windows binary: prefer Windows %USERPROFILE%, normalize slashes.
+# The workspace is the standard home Beads DB at ${BEADS_WS}/.beads.
 HOME_DIR="${USERPROFILE:-$HOME}"
 HOME_DIR="${HOME_DIR//\\//}"
-BEADS_WS="${HOME_DIR}/.superpowered-beads"
+BEADS_WS="${HOME_DIR}"
 
 # 1. Always-present workflow rules
 workflow_content=$(cat "${PLUGIN_ROOT}/WORKFLOW.md" 2>/dev/null || echo "Error reading WORKFLOW.md")

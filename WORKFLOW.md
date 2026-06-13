@@ -34,8 +34,8 @@ Run `/start-feature <description>` for stages 1–4 (brainstorm → epic → pla
 
 ## Beads workspace
 
-This plugin uses a contained global workspace at `~/.superpowered-beads/.beads`
-(created by `/sb-setup`). Commands target it with `bd -C <home>/.superpowered-beads ...`
+This plugin uses the standard home Beads database at `~/.beads` (created by `/sb-setup`
+if absent). Commands target it with `bd -C "$HOME" ...` (Windows: `bd -C "$env:USERPROFILE" ...`)
 unless you are inside a code repo that has its own `.beads`.
 
 Per-project bootstrap (when starting work in a real repo):
