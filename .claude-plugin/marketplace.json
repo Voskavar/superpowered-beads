@@ -7,7 +7,7 @@
       "name": "superpowered-beads",
       "description": "Superpowers lifecycle on top of Beads issue tracking",
       "version": "0.1.0",
-      "source": "./",
+      "source": { "source": "url", "url": "https://github.com/Voskavar/superpowered-beads.git" },
       "author": { "name": "Voskavar", "email": "voskavar@proton.me" }
     }
   ]
