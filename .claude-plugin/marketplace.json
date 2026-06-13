@@ -1,0 +1,14 @@
+{
+  "name": "superpowered-beads",
+  "description": "Superpowers × Beads unified workflow plugin",
+  "owner": { "name": "Voskavar", "email": "voskavar@proton.me" },
+  "plugins": [
+    {
+      "name": "superpowered-beads",
+      "description": "Superpowers lifecycle on top of Beads issue tracking",
+      "version": "0.1.0",
+      "source": "./",
+      "author": { "name": "Voskavar", "email": "voskavar@proton.me" }
+    }
+  ]
+}

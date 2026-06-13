@@ -1,0 +1,7 @@
+# OS / editor
+Thumbs.db
+.DS_Store
+*.swp
+
+# Beads working data (issues sync via Dolt, not committed here)
+.beads/embeddeddolt/
