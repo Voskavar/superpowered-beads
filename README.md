@@ -6,24 +6,38 @@ and a one-time `/sb-setup` that prepares a clean home Beads database.
 
 ## Prerequisites (one-time)
 
-1. **Claude Code** (desktop, CLI, or IDE).
+1. **Claude Code** (desktop app, CLI, or IDE extension).
 2. **Git for Windows** — provides the `bash` the SessionStart hook needs. (macOS/Linux: bash is built in.)
 3. **Beads (`bd`)** — install per https://github.com/gastownhall/beads (e.g. `winget install` or `go install`). Verify with `bd version`.
-4. **Superpowers plugin:**
-   ```
-   claude plugin marketplace add obra/superpowers-marketplace
-   claude plugin install superpowers@superpowers-dev
-   ```
+4. **Superpowers plugin** — marketplace `obra/superpowers-marketplace`, plugin `superpowers`.
 
 ## Install
 
+This repo is **public**, so no GitHub auth is needed. Use whichever path matches your client.
+
+### A. Terminal Claude Code (`/plugin` command or `claude` CLI)
 ```
 claude plugin marketplace add Voskavar/superpowered-beads
 claude plugin install superpowered-beads@superpowered-beads
 ```
-(Private repo: you need git access to `Voskavar/superpowered-beads`.)
+(Or `/plugin` → add marketplace `Voskavar/superpowered-beads` → install.)
 
-Then **restart Claude Code** and run once:
+### B. Desktop app / clients without `/plugin` (settings.json)
+Some clients don't expose the `/plugin` command. Add these to your `~/.claude/settings.json`
+(Windows: `C:\Users\<you>\.claude\settings.json`), merging into anything already present:
+```json
+"enabledPlugins": {
+  "superpowered-beads@superpowered-beads": true
+},
+"extraKnownMarketplaces": {
+  "superpowered-beads": {
+    "source": { "repo": "Voskavar/superpowered-beads", "source": "github" }
+  }
+}
+```
+(If a stale/broken `superpowered-beads` entry already exists, remove it first to bust the cache.)
+
+Then **fully restart Claude Code** and run once:
 ```
 /sb-setup
 ```
@@ -46,3 +60,11 @@ claude plugin update superpowered-beads
 claude plugin uninstall superpowered-beads
 ```
 Uninstalling leaves `~/.beads` intact; your issues and memories remain.
+
+## Notes for maintainers
+
+- The plugin in `marketplace.json` is sourced via a **url object**
+  (`{ "source": "url", "url": "https://github.com/Voskavar/superpowered-beads.git" }`), **not**
+  `"./"`. The Claude desktop app lists **0 plugins** for a `"./"` source even though the terminal
+  CLI accepts it — always use the url-object form.
+- The repo must stay **public** (or each user's git must be authenticated) or clients can't fetch it.
